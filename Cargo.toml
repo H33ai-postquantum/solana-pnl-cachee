@@ -1,0 +1,24 @@
+[package]
+name = "solana-pnl-cachee"
+version = "0.1.0"
+edition = "2021"
+authors = ["Eric Beans <eric@cachee.ai>"]
+description = "Solana wallet PnL solver — Nx2 parallel balance curve at 2.56 ms per data point"
+license = "MIT"
+repository = "https://github.com/H33ai-postquantum/solana-pnl-cachee"
+keywords = ["solana", "pnl", "cachee", "helius", "wallet"]
+
+[dependencies]
+tokio = { version = "1.35", features = ["rt-multi-thread", "sync", "time", "macros"] }
+futures = "0.3"
+reqwest = { version = "0.12", features = ["json", "rustls-tls"], default-features = false }
+serde_json = "1.0"
+anyhow = "1.0"
+dotenvy = "0.15"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true
